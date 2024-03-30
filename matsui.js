@@ -13,9 +13,20 @@ let isPriceBoardOpenPrev;
 function getText(stockName) {
   console.log("getText: " + stockName);
   switch (stockName) {
+    case "ライドオンＥ": 
+      return `銀のさらとか釜寅とか。ライドオンエクスプレス<br>
+      100株で株主優待2500円、300株で5000円`
+      
     case "オーウエル": 
-      return `
-    `
+      return `ものづくりトータルコーディネートをやっている会社で、<br>
+      <a href="https://www.owell.co.jp/ir/yutai/">300株から株主優待で食べ物がもらえる。</a>`
+      
+    case "ウェルネオＳ":
+    	return `ウェルネオシュガー　砂糖の会社。<br>
+      株主優待で砂糖の製品がもらえる`
+      
+    case "飯野海":
+    	return `飯野海運。500株から株主優待がもらえて、カタログギフト。海産物とかもらえるっぽい。`  
       
     default:
       return `(説明無し)`
