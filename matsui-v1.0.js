@@ -12,6 +12,11 @@
 
 console.log("Matsui stock script loaded ......");
 
+const memo = {
+  // サンプル
+  "キッズスター": "子供向け体験アプリごっこランド、時価総額38億、筆頭株主が社長ではない、売上は伸びており、自己資本83%",
+};
+
 (function() {
 
   setInterval(function() {
@@ -33,9 +38,9 @@ console.log("Matsui stock script loaded ......");
     if (isUpdateRequired(activeBoardName, numOfCards)) {
       // console.log("update");
       const cards = $("div#priceboard-chart li");
-      for (const card of cards) {
-
-      }
+      cards.each(function() {
+        $(this).find("div.header").children().eq(1).prepend("<div>説明をここに</div><hr>");
+      });
     }
 
     // 前回の状態を記憶
