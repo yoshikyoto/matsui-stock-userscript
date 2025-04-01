@@ -13,22 +13,42 @@
 console.log("Matsui stock script loaded ......");
 
 (function() {
-  var previousActiveBoardName = "";
 
   setInterval(function() {
     const isPriceBoardOpen = $("div#priceboard-chart").length > 0;
     if (isPriceBoardOpen) {
-      let activeBoardName = $("div#priceboard-groups li.active").text();
-      if (previousActiveBoardName !== activeBoardName) {
-        // ボードが切り替わった場合はだけ処理を行う
-        openPriceBoardPage();
-        previousActiveBoardName = activeBoardName;
-      }
+      openPriceBoardPage();
     }
   }, 1000);
 
-  function openPriceBoardPage() {
-    console.log("priceBoardPage の処理");
 
+  function openPriceBoardPage() {
+    // console.log("openPriceBoardPage");
+    const activeBoardName = $("div#priceboard-groups li.active").text();
+    const numOfCards = $("div#priceboard-chart li").length;
+
+    // console.log("activeBoardName: ", activeBoardName);
+    // console.log("numOfCards: ", numOfCards);
+    // ボードが切り替わった場合はだけ処理を行う
+    if (isUpdateRequired(activeBoardName, numOfCards)) {
+      // console.log("update");
+    }
+
+    // 前回の状態を記憶
+    previousActiveBoardName = activeBoardName;
+    previousNumOfCards = numOfCards;
+  }
+
+  var previousActiveBoardName = "";
+  var previousNumOfCards = null;
+  function isUpdateRequired(activeBoardName, numOfCards) {
+    // ボードが切り替わった場合は更新処理を行う
+    if (previousActiveBoardName !== activeBoardName) {
+      return true;
+    }
+
+    // ボードが切り替わっていない場合、
+    // 読込中にカードの数が変わることがあるので、そうなったら更新処理は行う
+    return numOfCards !== previousNumOfCards;
   }
 })();
