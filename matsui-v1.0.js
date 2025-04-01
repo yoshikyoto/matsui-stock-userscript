@@ -28,18 +28,18 @@ const memo = {
 
 
   function openPriceBoardPage() {
-    // console.log("openPriceBoardPage");
     const activeBoardName = $("div#priceboard-groups li.active").text();
     const numOfCards = $("div#priceboard-chart li").length;
 
-    // console.log("activeBoardName: ", activeBoardName);
-    // console.log("numOfCards: ", numOfCards);
     // ボードが切り替わった場合はだけ処理を行う
     if (isUpdateRequired(activeBoardName, numOfCards)) {
-      // console.log("update");
       const cards = $("div#priceboard-chart li");
       cards.each(function() {
-        $(this).find("div.header").children().eq(1).prepend("<div>説明をここに</div><hr>");
+        // 会社名からメモを取得して、松井証券のカード UI に追加する
+        const companyName = $(this).find("div.top div.left span:first").text();
+        if (memo[companyName]) {
+          $(this).find("div.header").children().eq(1).prepend("<div>" + memo[companyName] + "</div><hr>");
+        }
       });
     }
 
