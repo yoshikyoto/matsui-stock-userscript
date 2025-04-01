@@ -32,6 +32,10 @@ console.log("Matsui stock script loaded ......");
     // ボードが切り替わった場合はだけ処理を行う
     if (isUpdateRequired(activeBoardName, numOfCards)) {
       // console.log("update");
+      const cards = $("div#priceboard-chart li");
+      for (const card of cards) {
+
+      }
     }
 
     // 前回の状態を記憶
