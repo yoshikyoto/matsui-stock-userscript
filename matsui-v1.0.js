@@ -10,15 +10,13 @@
 // 必ず Google Chrome の開発者モードを有効にする必要があります
 // https://www.tampermonkey.net/faq.php#Q209
 
-console.log("user script --------------------------------------");
+console.log("Matsui stock script loaded ......");
 
 (function() {
   var previousActiveBoardName = "";
 
   setInterval(function() {
-    console.log("interval --------------------------------------");
     const isPriceBoardOpen = $("div#priceboard-chart").length > 0;
-    console.log("isPriceBoardOpen: " + isPriceBoardOpen);
     if (isPriceBoardOpen) {
       let activeBoardName = $("div#priceboard-groups li.active").text();
       if (previousActiveBoardName !== activeBoardName) {
